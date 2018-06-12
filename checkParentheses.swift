@@ -62,6 +62,47 @@ func validBraces(_ string:String) -> Bool {
     return popup.isEmpty
 }
 
+//Super implémentation par d'autres eleves
+
+let matches: [Character: Character] = ["(": ")", "[": "]", "{": "}"]
+
+func validBraces(_ string: String) -> Bool {
+    var stack: [Character] = []
+    for char in string.characters {
+        if let match = matches[char] {
+            stack.append(match)
+        } else {
+            if char != stack.popLast() {
+                return false
+            }
+        }
+    }
+    return stack.isEmpty
+}
+
+//autre encore
+
+func validBraces(_ string: String) -> Bool {
+    var stack: [Character] = [Character]()
+
+    for char in string {
+        switch (char){
+        case "(", "{", "[":
+            stack.append(char)
+        default:
+            guard let prev = stack.popLast() else { return false }
+            switch (prev, char){
+            case ("(", ")"), ("{","}"), ("[", "]"):
+                break
+            default :
+                return false
+            }
+        }
+    }
+    return stack.isEmpty
+}
+
+
 //print(validBraces("([{}])"))) //true
 //print(validBraces("(}")) //false
 //print(validBraces("[(])")) //false
