@@ -53,13 +53,24 @@ func checkParentheses(input: String) -> Bool {
                     } else {
                         return false
                     }
+                } else {
+                    return false
                 }
             }
         }
     }
-    return popup.isEmpty ? true : false
+    return popup.isEmpty 
 }
 
-print(checkParentheses(input: "{2134[21(2)3]4}645")) //true
-print(checkParentheses(input: "{[")) //false
-print(checkParentheses(input: "{[]}")) //true
+print(validBraces("([{}])"))) //true
+print(validBraces("(}")) //false
+print(validBraces("[(])")) //false
+print(validBraces("({})[({})]")) //true
+print(validBraces("(})")) //false
+print(validBraces("(({{[[]]}}))")) //true
+print(validBraces("{}({})[]")) //true
+print(validBraces(")(}{][")) //false
+print(validBraces("())({}}{()][][")) //false
+print(validBraces("(((({{")) //false
+print(validBraces("}}]]))}])")) //false
+
