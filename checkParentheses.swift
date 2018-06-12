@@ -10,7 +10,7 @@ import UIKit
 //
 //For the following input: chec, the output is 0.
 
-func checkParentheses(input: String) -> Bool {
+func validBraces(_ string:String) -> Bool {
     var popup = [Character]()
     let rightP: [Character] = [")", "}", "]"]
     let leftP: [Character] = ["(", "{", "["]
@@ -42,35 +42,35 @@ func checkParentheses(input: String) -> Bool {
         }
     }
     
-    for i in input {
+    for i in string {
         if let lindex = leftParentheses(caract: i) {
             popup.append(leftP[lindex])
         } else if let rindex = rightParentheses(caract: i) {
             if let lastElement = popup.last {
                 if let lindex = leftParentheses(caract: lastElement) {
                     if lindex == rindex {
-                        popup.popLast()
+                        popup.removeLast()
                     } else {
                         return false
                     }
-                } else {
-                    return false
                 }
+            } else{
+                return false
             }
         }
     }
-    return popup.isEmpty 
+    return popup.isEmpty
 }
 
-print(validBraces("([{}])"))) //true
-print(validBraces("(}")) //false
-print(validBraces("[(])")) //false
-print(validBraces("({})[({})]")) //true
-print(validBraces("(})")) //false
-print(validBraces("(({{[[]]}}))")) //true
-print(validBraces("{}({})[]")) //true
-print(validBraces(")(}{][")) //false
-print(validBraces("())({}}{()][][")) //false
-print(validBraces("(((({{")) //false
-print(validBraces("}}]]))}])")) //false
+//print(validBraces("([{}])"))) //true
+//print(validBraces("(}")) //false
+//print(validBraces("[(])")) //false
+//print(validBraces("({})[({})]")) //true
+//print(validBraces("(})")) //false
+//print(validBraces("(({{[[]]}}))")) //true
+//print(validBraces("{}({})[]")) //true
+//print(validBraces(")(}{][")) //false
+//print(validBraces("())({}}{()][][")) //false
+//print(validBraces("(((({{")) //false
+//print(validBraces("}}]]))}])")) //false
 
